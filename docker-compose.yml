@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+  relay:
+    image: cloudamqp/websocket-tcp-relay
+    container_name: websocket-tcp-relay
+    command: /usr/local/bin/websocket-tcp-relay --bind 0.0.0.0 --upstream tcp://rabbitmq:5672
+    ports:
+      - 15670:15670
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 5673:5672
+
+
+
+volumes:
+  postgres_data:

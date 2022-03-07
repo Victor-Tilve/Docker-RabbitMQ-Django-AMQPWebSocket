@@ -1,0 +1,22 @@
+{
+  "name": "20211125_amqp_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "@cloudamqp/amqp-client": "^1.1.6",
+    "buffer": "^6.0.3",
+    "stream-browserify": "^3.0.0"
+  }
+}

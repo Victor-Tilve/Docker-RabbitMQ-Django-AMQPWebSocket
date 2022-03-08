@@ -6,7 +6,7 @@ const input = document.getElementById("message")
 const tls = window.location.scheme === "https:"
 
 //const url = `${tls ? "wss" : "ws"}://${window.location.host}`
-const url = `${tls ? "wss" : "ws"}://127.0.0.1:15671/ws/amqp`
+const url = `${tls ? "wss" : "ws"}://websocket-tcp-relay:15670/ws/amqp`
 // const url = " https://127.0.0.1:15671"
 
 const exchange = "fpx"

@@ -2,8 +2,8 @@ import pika
 import sys
 
 credentials = pika.credentials.PlainCredentials(
-    username="USV",
-    password="USV$1234"
+    username="USV-Project",
+    password="USV1234"
 )
 parameters = pika.ConnectionParameters(
     host='localhost', # tried all above options

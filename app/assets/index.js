@@ -6,7 +6,7 @@ const input = document.getElementById("message")
 const tls = window.location.scheme === "https:"
 
 //const url = `${tls ? "wss" : "ws"}://${window.location.host}`
-const url = `${tls ? "wss" : "ws"}://websocket-tcp-relay:15670/ws/amqp`
+const url = `${tls ? "wss" : "ws"}://127.0.0.1:15679/ws/amqp`
 // const url = " https://127.0.0.1:15671"
 
 const exchange = "fpx"
@@ -14,8 +14,9 @@ const topic = "sensores.usv"
 
 const start= async(url,exchange,topic)=> {
   try {        
-    const amqp = new AMQPClient(url, "/", "guest", "guest") //vhost, username, password, name, platform
-    const connection =  amqp.connect().then(async (connection)=>{
+    const amqp = new AMQPClient(url, "/", "USV-Project", "USV1234") //vhost, username, password, name, platform
+    
+    const connection =  await amqp.connect().then(async (connection)=>{
       
       const channel = await connection.channel()    
       await channel.exchangeDeclare(exchange, "topic", { durable: true });
@@ -34,7 +35,7 @@ const start= async(url,exchange,topic)=> {
         }      
       );  
     },(error)=>{
-      
+    
       console.log("Ha ocurrido un error al conectarse al broker", error)
     })
 

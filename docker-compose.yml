@@ -25,9 +25,9 @@ services:
   relay:
     image: cloudamqp/websocket-tcp-relay
     container_name: websocket-tcp-relay
-    command: /usr/local/bin/websocket-tcp-relay --bind 0.0.0.0 --upstream tcp://rabbitmq:5672
+    command: /usr/local/bin/websocket-tcp-relay --upstream tcp://rabbitmq:5672
     ports:
-      - 15670:15670
+      - 15679:15670
   rabbitmq:
     build: ./RabbitMQ
     container_name: rabbitmq
